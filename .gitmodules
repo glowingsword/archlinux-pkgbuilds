@@ -4,3 +4,6 @@
 [submodule "nginx-mainline-http3-mod-ndk-set-misc"]
 	path = nginx-mainline-http3-mod-ndk-set-misc
 	url = git@github.com:glowingsword/nginx-mainline-http3-mod-ndk-set-misc.git
+[submodule "nginx-mainline-http3"]
+	path = nginx-mainline-http3
+	url = git@github.com:glowingsword/nginx-mainline-http3.git
