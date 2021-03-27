@@ -1,0 +1,6 @@
+[submodule "nginx-mainline-http3-mod-brotli"]
+	path = nginx-mainline-http3-mod-brotli
+	url = git@github.com:glowingsword/nginx-mainline-http3-mod-brotli.git
+[submodule "nginx-mainline-http3-mod-ndk-set-misc"]
+	path = nginx-mainline-http3-mod-ndk-set-misc
+	url = git@github.com:glowingsword/nginx-mainline-http3-mod-ndk-set-misc.git
