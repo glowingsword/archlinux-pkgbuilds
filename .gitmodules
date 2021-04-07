@@ -7,3 +7,6 @@
 [submodule "nginx-mainline-http3"]
 	path = nginx-mainline-http3
 	url = git@github.com:glowingsword/nginx-mainline-http3.git
+[submodule "nginx-unit-gs"]
+	path = nginx-unit-gs
+	url = ../nginx-unit-gs.git
