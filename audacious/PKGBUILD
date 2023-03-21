@@ -1,0 +1,33 @@
+# Maintainer: Evangelos Foutras <evangelos@foutrelis.com>
+# Contributor: Gaetan Bisson <bisson@archlinux.org>
+# Contributor: Alexander Fehr <pizzapunk gmail com>
+# Contributor: Giovanni Scafora <giovanni@archlinux.org>
+# Contributor: Andrei Gutu <glowingsword gmail com>
+
+
+pkgname=audacious
+pkgver=4.3
+pkgrel=0
+pkgdesc="Lightweight, advanced audio player focused on audio quality"
+arch=('x86_64')
+url="https://audacious-media-player.org/"
+license=('BSD')
+depends=('qt5-base' 'qt5-svg' 'qt5-imageformats' 'glib2' 'audacious-plugins'
+         'hicolor-icon-theme' 'desktop-file-utils')
+makedepends=('python' 'meson') # for gdbus-codegen
+optdepends=('unzip: zipped skins support')
+source=(https://distfiles.audacious-media-player.org/$pkgname-$pkgver.tar.bz2)
+sha256sums=('27584dc845c7e70db8c9267990945f17322a1ecc80ff8b452e9ca916a0ce9091')
+
+build() {
+  arch-meson $pkgname-$pkgver build --prefix=/usr --buildtype=plain -Dgtk=false -Dqt=true -Dbuildstamp='Arch Linux'
+  meson compile -C build
+}
+
+package() {
+  meson install -C build --destdir "$pkgdir"
+  install -Dm644 $pkgname-$pkgver/contrib/audacious.appdata.xml -t "$pkgdir/usr/share/metainfo"
+  install -Dm644 $pkgname-$pkgver/COPYING "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+
+# vim:set ts=2 sw=2 et:

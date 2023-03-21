@@ -1,0 +1,33 @@
+# Maintainer: Evangelos Foutras <evangelos@foutrelis.com>
+# Contributor: Gaetan Bisson <bisson@archlinux.org>
+# Contributor: Alexander Fehr <pizzapunk gmail com>
+# Contributor: William Rea <sillywilly@gmail.com>
+# Contributor: Andrei Gutu <glowingsword gmail com>
+
+pkgname=audacious-plugins
+pkgver=4.3
+pkgrel=0
+pkgdesc="Plugins for Audacious"
+arch=('x86_64')
+url="https://audacious-media-player.org/"
+license=('BSD' 'GPL')
+depends=('alsa-lib' 'curl' 'dbus-glib' 'faad2' 'ffmpeg' 'flac' 'fluidsynth'
+         'jack' 'lame' 'libcdio-paranoia' 'libcue' 'libmms' 'libmodplug'
+         'libmtp' 'libpipewire' 'libpulse' 'libnotify' 'libsamplerate' 'libsidplayfp'
+         'libvorbis' 'lirc' 'mpg123' 'neon' 'wavpack' 'libbs2b' 'libopenmpt'
+         'libcddb' 'qt5-x11extras')
+makedepends=("audacious>=$pkgver" 'glib2' 'python' 'meson')
+source=(https://distfiles.audacious-media-player.org/$pkgname-$pkgver.tar.bz2)
+sha256sums=('662ef6c8c4bd70d0f35fd1c5f08b91549b9436638b65f8a1a33956b09df89fc6')
+
+build() {
+  arch-meson $pkgname-$pkgver build --prefix=/usr --buildtype=plain -Dgtk=false -Dqt=true -Damidiplug=true
+  meson compile -C build
+}
+
+package() {
+  meson install -C build --destdir "$pkgdir"
+  install -Dm644 "$pkgname-$pkgver/COPYING" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+
+# vim:set ts=2 sw=2 et:
